@@ -50,7 +50,7 @@
         content="2022-03-27">
       <meta 
         property="og:article:modified_time" 
-        content="2022-03-28">
+        content="2022-03-30">
       <meta 
         property="og:article:author" 
         content="Thirsty">
@@ -340,26 +340,26 @@
 <td>分布式与高可用</td>
 </tr>
 </tbody></table>
-<h5 id="2、在Linux系统中安装Redis"><a href="#2、在Linux系统中安装Redis" class="headerlink" title="2、在Linux系统中安装Redis"></a>2、在Linux系统中安装Redis</h5><p>​    1、准备工作</p>
+<h5 id="2、在Linux系统中安装Redis"><a href="#2、在Linux系统中安装Redis" class="headerlink" title="2、在Linux系统中安装Redis"></a>2、在Linux系统中安装Redis</h5><p>​        1、准备工作</p>
 <p>​    下载Redis <a target="_blank" rel="noopener" href="https://redis.io/">redis.io</a></p>
-<p>​    2、安装</p>
-<p>​        a、在目录&#x2F;home&#x2F;Download 解压到&#x2F;opt</p>
+<p>​        2、安装</p>
+<p>​            a、在目录&#x2F;home&#x2F;Download 解压到&#x2F;opt</p>
 <pre class="highlight"><span class="line">tar -xvf redis-6.2.6.tar.gz -C /opt</span><br></pre>
 
-<p>​        b、进入解压后的目录</p>
+<p>​            b、进入解压后的目录</p>
 <pre class="highlight"><span class="line">cd /opt/redis-6.2.6</span><br></pre>
 
-<p>​        c、有一个install文件</p>
+<p>​            c、有一个install文件</p>
 <pre class="highlight"><span class="line">sudo make install</span><br></pre>
 
-<p>​        d、成功后进入当前目录下的src</p>
+<p>​            d、成功后进入当前目录下的src</p>
 <pre class="highlight"><span class="line">cd src</span><br></pre>
 
-<p>​        e、测试一下</p>
+<p>​            e、测试一下</p>
 <pre class="highlight"><span class="line">sudo make test</span><br></pre>
 
 <p>安装成功！</p>
-<p>3·启动服务端</p>
+<p>​    3·启动服务端</p>
 <pre class="highlight"><span class="line">sudo redis-server</span><br></pre>
 
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/2022-03-27%2017-38-39%20.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/2022-03-27%2017-38-39%20.png"></p>
@@ -416,7 +416,7 @@
 <td>设置使用密码</td>
 </tr>
 </tbody></table>
-<h6 id="Redis通用命令"><a href="#Redis通用命令" class="headerlink" title="Redis通用命令"></a>Redis通用命令</h6><table>
+<h5 id="Redis通用命令"><a href="#Redis通用命令" class="headerlink" title="Redis通用命令"></a>Redis通用命令</h5><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -470,7 +470,7 @@
 <td align="center">查看key&#x3D;a的过期剩余时间</td>
 </tr>
 </tbody></table>
-<h6 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h6><blockquote>
+<h5 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h5><blockquote>
 <p>String -字符串类型 :String最大512mb 建议单个kv不超过100kb</p>
 <p>Hash -Hash类型</p>
 <p>List -列表类型</p>
@@ -539,7 +539,7 @@
 <li>Set集合是字符串的无序集合，集合成员是唯一的</li>
 <li>Zset集合是字符串的有序集合，集合成员是唯一的</li>
 </ul>
-<h3 id="三、掌握在Java中操作Redis"><a href="#三、掌握在Java中操作Redis" class="headerlink" title="三、掌握在Java中操作Redis"></a>三、掌握在Java中操作Redis</h3><h6 id="Java客服端-Jedis"><a href="#Java客服端-Jedis" class="headerlink" title="Java客服端 -Jedis"></a>Java客服端 -Jedis</h6><ul>
+<h3 id="三、掌握在Java中操作Redis"><a href="#三、掌握在Java中操作Redis" class="headerlink" title="三、掌握在Java中操作Redis"></a>三、掌握在Java中操作Redis</h3><h5 id="Java客服端-Jedis"><a href="#Java客服端-Jedis" class="headerlink" title="Java客服端 -Jedis"></a>Java客服端 -Jedis</h5><ul>
 <li>Jedis是Java语言开发的Redis客户端工具包</li>
 <li>Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手</li>
 </ul>
@@ -573,6 +573,20 @@
 </article>
 <div class="nav">
   
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/03/31/Idea%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0github%E4%B8%8A/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">Idea新建项目推送到github上 </div>
+          
+        </div>
+      </a>
+    </div>
+  
   
     <div class="nav-item-next">
       <a 
@@ -599,7 +613,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -618,7 +632,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>4</span>
+    <span>5</span>
     <span>文章</span>
   </a>
   <a 
@@ -675,7 +689,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -700,7 +714,7 @@
       <a href="/categories/%E5%85%B6%E4%BB%96/">
         <div class="categories-list-item">
           其他
-          <span class="categories-list-item-badge">2</span>
+          <span class="categories-list-item-badge">3</span>
         </div>
       </a>
     
@@ -719,15 +733,15 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/redis/" 
-        title="redis">
-        <div class="tags-list-item">redis</div>
-      </a>
-    
-      <a 
         href="/tags/github/" 
         title="github">
         <div class="tags-list-item">github</div>
+      </a>
+    
+      <a 
+        href="/tags/redis/" 
+        title="redis">
+        <div class="tags-list-item">redis</div>
       </a>
     
       <a 
@@ -754,7 +768,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Redis%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-text">一、Redis介绍与安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81Redis%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、Redis介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Redis%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">Redis特点：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%AE%89%E8%A3%85Redis"><span class="toc-text">2、在Linux系统中安装Redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%8C%E6%8F%A1Redis%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">二、掌握Redis的常用命令与数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis通用命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%8C%E6%8F%A1%E5%9C%A8Java%E4%B8%AD%E6%93%8D%E4%BD%9CRedis"><span class="toc-text">三、掌握在Java中操作Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E5%AE%A2%E6%9C%8D%E7%AB%AF-Jedis"><span class="toc-text">Java客服端 -Jedis</span></a></li></ol></li></ol></li></ol>
     </article>
   
   
@@ -769,6 +783,11 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-03-31</div>
+        <a href="/2022/03/31/Idea%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0github%E4%B8%8A/"><div class="recent-posts-item-content">Idea新建项目推送到github上</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-03-27</div>
         <a href="/2022/03/27/Redis/"><div class="recent-posts-item-content">Redis</div></a>
       </div>
@@ -781,11 +800,6 @@
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-03-16</div>
         <a href="/2022/03/16/docker%E5%AE%89%E8%A3%85Mysql/"><div class="recent-posts-item-content">docker安装Mysql</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-16</div>
-        <a href="/2022/03/16/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
       </div>
     
   </div>
