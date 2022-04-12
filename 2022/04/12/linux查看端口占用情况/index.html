@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="/img/Thirsty.png">
-  <title>Mybatis-Plus------入门</title>
+  <title>linux查看端口占用情况</title>
   
     
       <meta 
         property="og:title" 
-        content="Mybatis-Plus------入门">
+        content="linux查看端口占用情况">
     
     
       <meta 
         property="og:url" 
-        content="http://example.com/2022/04/05/Mybatis-Plus-%E5%85%A5%E9%97%A8/index.html">
+        content="http://example.com/2022/04/12/linux%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/index.html">
     
     
       <meta 
@@ -38,7 +38,7 @@
     
       <meta 
         property="og:img" 
-        content="&lt;p&gt;mybatis持久层框架比较火热，但是还是需要自己写大量的SQL语句，有时候就很容易出错，也很麻烦。mybatis-plus就解决了这个问题&lt;/p&gt;">
+        content="&lt;p&gt;使用netstat查看端口的占用情况&lt;/p&gt;">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-04-05">
+        content="2022-04-12">
       <meta 
         property="og:article:modified_time" 
-        content="2022-04-05">
+        content="2022-04-12">
       <meta 
         property="og:article:author" 
         content="Thirsty">
@@ -57,7 +57,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="Mybatisplus">
+            content="linux">
         
       
     
@@ -268,21 +268,21 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Mybatis-Plus------入门
+      linux查看端口占用情况
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-04-05T08:32:56.000Z">
+    <time datetime="2022-04-12T13:03:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-04-05</span>
+      <span>2022-04-12</span>
     </time>
     
     
       <span class="dot"></span>
-      <span>134 字</span>
+      <span>224 字</span>
     
   </div>
   
@@ -297,9 +297,9 @@
         
           
           <a 
-            href="/tags/Mybatisplus/" 
+            href="/tags/linux/" 
             class="post-meta-link">
-            Mybatisplus
+            linux
           </a>
         
       </div>
@@ -309,13 +309,37 @@
   <div 
     id="section" 
     class="post-content">
-    <p>mybatis持久层框架比较火热，但是还是需要自己写大量的SQL语句，有时候就很容易出错，也很麻烦。mybatis-plus就解决了这个问题</p>
+    <p>使用netstat查看端口的占用情况</p>
 <span id="more"></span>
 
-<h3 id="1-Mybatis-Plus介绍"><a href="#1-Mybatis-Plus介绍" class="headerlink" title="1.Mybatis-Plus介绍"></a>1.Mybatis-Plus介绍</h3><p>MyBatis-Plus(简称MP)是一个MyBatis的增强工具，在MyBatis的基础上只做增强不做改变，为简介开发、提高效率。</p>
-<p>官网：<a target="_blank" rel="noopener" href="https://mybatis.plus/">https://mybatis.plus/</a>或<a target="_blank" rel="noopener" href="https://mp.baomidou.com/">https://mp.baomidou.com/</a></p>
-<p>github:<a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">https://github.com/baomidou/mybatis-plus</a></p>
-<h3 id="2-快速开始"><a href="#2-快速开始" class="headerlink" title="2.快速开始"></a>2.快速开始</h3><p>对于Mybatis整合MP有常常有三种用法，分别Mybatis+MP、Spring+Mybatis+MP、SpringBoot+Mybatis+MP。</p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>netstat -pan 用于显示tcp，udp的端口和进程等相关情况。</p>
+<p>netstat 查看端口占用语法格式：</p>
+<pre class="highlight"><span class="line">netstat -Pan | grep 端口号</span><br></pre>
+
+<ul>
+<li>-t(tcp) 仅显示tcp相关选项</li>
+<li>-u(udp) 仅显示udp相关选项</li>
+<li>-n 拒绝显示别名，能显示数字的全部转化为数字</li>
+<li>-l 仅列出在Listen(监听)的服务状态</li>
+<li>-p 显示建立相关链接的程序名</li>
+</ul>
+<p>例查看 8080端口iude情况</p>
+<pre class="highlight"><span class="line">tcp6       0      0 :::8080                 :::*                    LISTEN      60748/java </span><br></pre>
+
+<p>更多命令：</p>
+<blockquote>
+<p>netstat -pan    &#x2F;&#x2F;查看当前所有tcp端口</p>
+<p>netstat -pan | grep 80        &#x2F;&#x2F;查看所有80端口使用情况</p>
+<p>netstat -pan | grep 8080        &#x2F;&#x2F;查看所有8080端口使用情况</p>
+<p>…</p>
+</blockquote>
+<h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><p>在查到端口占用的进程后，想要杀掉对应的进程用kill命令：</p>
+<pre class="highlight"><span class="line">kill -9 PID</span><br></pre>
+
+<p>例如</p>
+<p>我们看到8080端口对应的PID为60748</p>
+<pre class="highlight"><span class="line">kill -9 60748</span><br></pre>
+
 
   </div>
   <div>
@@ -335,8 +359,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://example.com/2022/04/05/Mybatis-Plus-%E5%85%A5%E9%97%A8/">
-            http://example.com/2022/04/05/Mybatis-Plus-%E5%85%A5%E9%97%A8/
+            href="http://example.com/2022/04/12/linux%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/">
+            http://example.com/2022/04/12/linux%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -372,7 +396,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Mybatis-Plus%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.Mybatis-Plus介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-text">2.快速开始</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-text">netstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill"><span class="toc-text">kill</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -448,7 +472,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Mybatis-Plus%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.Mybatis-Plus介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-text">2.快速开始</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-text">netstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill"><span class="toc-text">kill</span></a></li></ol>
       </div>
     </article>
   
@@ -492,21 +516,15 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/docker/" 
-        title="docker">
-        <div class="tags-list-item">docker</div>
-      </a>
-    
-      <a 
         href="/tags/github/" 
         title="github">
         <div class="tags-list-item">github</div>
       </a>
     
       <a 
-        href="/tags/redis/" 
-        title="redis">
-        <div class="tags-list-item">redis</div>
+        href="/tags/linux/" 
+        title="linux">
+        <div class="tags-list-item">linux</div>
       </a>
     
       <a 
@@ -516,9 +534,15 @@
       </a>
     
       <a 
-        href="/tags/Mybatisplus/" 
-        title="Mybatisplus">
-        <div class="tags-list-item">Mybatisplus</div>
+        href="/tags/redis/" 
+        title="redis">
+        <div class="tags-list-item">redis</div>
+      </a>
+    
+      <a 
+        href="/tags/docker/" 
+        title="docker">
+        <div class="tags-list-item">docker</div>
       </a>
     
   </div>
@@ -539,7 +563,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Mybatis-Plus%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.Mybatis-Plus介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-text">2.快速开始</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat"><span class="toc-text">netstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill"><span class="toc-text">kill</span></a></li></ol>
     </article>
   
   
@@ -554,8 +578,8 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-04-05</div>
-        <a href="/2022/04/05/Mybatis-Plus-%E5%85%A5%E9%97%A8/"><div class="recent-posts-item-content">Mybatis-Plus------入门</div></a>
+        <div class="recent-posts-item-title">2022-04-12</div>
+        <a href="/2022/04/12/linux%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5/"><div class="recent-posts-item-content">linux查看端口占用情况</div></a>
       </div>
     
       <div class="recent-posts-item">
