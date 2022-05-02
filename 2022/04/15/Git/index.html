@@ -49,7 +49,7 @@
         content="2022-04-15">
       <meta 
         property="og:article:modified_time" 
-        content="2022-04-15">
+        content="2022-04-30">
       <meta 
         property="og:article:author" 
         content="Thirsty">
@@ -282,7 +282,7 @@
     
     
       <span class="dot"></span>
-      <span>217 字</span>
+      <span>555 字</span>
     
   </div>
   
@@ -323,6 +323,26 @@
 <p>pull:拉取，将远程仓库文件和版本信息下载到本地仓库</p>
 </blockquote>
 <p>Git下载:<a target="_blank" rel="noopener" href="https://git-scm.com/download">https://git-scm.com/download</a></p>
+<h3 id="二、Git常用命令"><a href="#二、Git常用命令" class="headerlink" title="二、Git常用命令"></a>二、Git常用命令</h3><p>当安装Git后首先要做的事情是设置用户名称和email地址。这是非常重要的，因为每次Git提交都会使用该用户信息。</p>
+<h5 id="在Git命令行中执行下面命令："><a href="#在Git命令行中执行下面命令：" class="headerlink" title="在Git命令行中执行下面命令："></a>在Git命令行中执行下面命令：</h5><pre class="highlight"><span class="line">git config --global user.name&quot;&quot;</span><br><span class="line">git config --global user.email&quot;&quot;</span><br></pre>
+
+<p>查看配置信息</p>
+<pre class="highlight"><span class="line">git config --list</span><br></pre>
+
+<h5 id="获取Git仓库"><a href="#获取Git仓库" class="headerlink" title="获取Git仓库"></a>获取Git仓库</h5><p>要使用Git对我们的代码进行版本控制，首先需要获得Git仓库</p>
+<p>获取Git仓库通常有两种方式：</p>
+<ul>
+<li><p>在本地初始化一个Git仓库</p>
+<p>1.在任意目录下创建一个空目录作为我们的本地Git仓库</p>
+<p>2.进入这个目录中，点击右键打开Git bash窗口</p>
+<p>3.执行命令git init</p>
+</li>
+<li><p>从远程克隆</p>
+<pre class="highlight"><span class="line">命令形式： git clone [远程Git仓库地址]</span><br></pre></li>
+</ul>
+<h5 id="工作区、暂存区、版本库概率"><a href="#工作区、暂存区、版本库概率" class="headerlink" title="工作区、暂存区、版本库概率"></a>工作区、暂存区、版本库概率</h5><p>版本库：.git隐藏文件夹就是版本库，版本库中存储了很多配置信息、日志信息和文件版本信息等</p>
+<p>工作区：包含.git文件夹的目录就是工作区，也称为工作目录，主要用于存放开发的代码</p>
+<p>暂存区：.git文件夹中有很多文件，其中有一个index文件就是暂存区，也可以叫做stage。暂存区是一个临时保存修改文件的地方</p>
 
   </div>
   <div>
@@ -379,7 +399,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E7%8E%87"><span class="toc-text">工作区、暂存区、版本库概率</span></a></li></ol></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -455,7 +475,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E7%8E%87"><span class="toc-text">工作区、暂存区、版本库概率</span></a></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -565,7 +585,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E7%8E%87"><span class="toc-text">工作区、暂存区、版本库概率</span></a></li></ol></li></ol></li></ol>
     </article>
   
   
