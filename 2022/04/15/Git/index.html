@@ -49,7 +49,7 @@
         content="2022-04-15">
       <meta 
         property="og:article:modified_time" 
-        content="2022-05-05">
+        content="2022-05-06">
       <meta 
         property="og:article:author" 
         content="Thirsty">
@@ -282,7 +282,7 @@
     
     
       <span class="dot"></span>
-      <span>988 字</span>
+      <span>992 字</span>
     
   </div>
   
@@ -343,7 +343,7 @@
 <h5 id="工作区、暂存区、版本库概念"><a href="#工作区、暂存区、版本库概念" class="headerlink" title="工作区、暂存区、版本库概念"></a>工作区、暂存区、版本库概念</h5><p>版本库：.git隐藏文件夹就是版本库，版本库中存储了很多配置信息、日志信息和文件版本信息等</p>
 <p>工作区：包含.git文件夹的目录就是工作区，也称为工作目录，主要用于存放开发的代码</p>
 <p>暂存区：.git文件夹中有很多文件，其中有一个index文件就是暂存区，也可以叫做stage。暂存区是一个临时保存修改文件的地方</p>
-<h3 id="Git工作区中文件的状态"><a href="#Git工作区中文件的状态" class="headerlink" title="Git工作区中文件的状态"></a>Git工作区中文件的状态</h3><p>Git工作区中的文件存在两种状态：</p>
+<h3 id="三、Git工作区中文件的状态"><a href="#三、Git工作区中文件的状态" class="headerlink" title="三、Git工作区中文件的状态"></a>三、Git工作区中文件的状态</h3><p>Git工作区中的文件存在两种状态：</p>
 <ul>
 <li>untracked未跟踪（未被纳入版本控制）</li>
 <li>tracked（被纳入版本控制）</li>
@@ -355,7 +355,7 @@
 <li>Staged 已暂存状态</li>
 </ol>
 </blockquote>
-<h3 id="本地仓库操作"><a href="#本地仓库操作" class="headerlink" title="本地仓库操作"></a>本地仓库操作</h3><p>本地仓库常用命令如下：</p>
+<h3 id="四、本地仓库操作"><a href="#四、本地仓库操作" class="headerlink" title="四、本地仓库操作"></a>四、本地仓库操作</h3><p>本地仓库常用命令如下：</p>
 <blockquote>
 <ul>
 <li>git status   查看文件状态</li>
@@ -365,7 +365,7 @@
 <li>git log   查看日志</li>
 </ul>
 </blockquote>
-<h3 id="远程仓库操作"><a href="#远程仓库操作" class="headerlink" title="远程仓库操作"></a>远程仓库操作</h3><p>远程仓库操作命令如下：</p>
+<h3 id="五、远程仓库操作"><a href="#五、远程仓库操作" class="headerlink" title="五、远程仓库操作"></a>五、远程仓库操作</h3><p>远程仓库操作命令如下：</p>
 <blockquote>
 <ul>
 <li>git remote    查看远程仓库</li>
@@ -375,7 +375,7 @@
 <li>git push    推送到远程仓库</li>
 </ul>
 </blockquote>
-<h3 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h3><p>分支是Git使用过程中非常重要的概念。使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。用一个仓库可以有多个分支，各个分支相互独立，互不干扰。</p>
+<h3 id="六、分支操作"><a href="#六、分支操作" class="headerlink" title="六、分支操作"></a>六、分支操作</h3><p>分支是Git使用过程中非常重要的概念。使用分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。用一个仓库可以有多个分支，各个分支相互独立，互不干扰。</p>
 <p>通过git init命令创建本地仓库时默认会创建一个master分支。</p>
 <p>分支的相关命令如下：</p>
 <blockquote>
@@ -387,13 +387,13 @@
 <li>git merge［name］   合并分支</li>
 </ul>
 </blockquote>
-<h4 id="分支操作-查看分支"><a href="#分支操作-查看分支" class="headerlink" title="分支操作-查看分支"></a>分支操作-查看分支</h4><blockquote>
+<h5 id="分支操作-查看分支"><a href="#分支操作-查看分支" class="headerlink" title="分支操作-查看分支"></a>分支操作-查看分支</h5><blockquote>
 <p>git branch  列出所有分支</p>
 <p>git branch -r   列出所有远程分支</p>
 <p>git branch -a   列出所有本地分支和远程分支</p>
 </blockquote>
-<h4 id="分支操作-创建分支"><a href="#分支操作-创建分支" class="headerlink" title="分支操作-创建分支"></a>分支操作-创建分支</h4><p>创建分支命令格式：git branch[name]</p>
-<h4 id="分支操作-切换分支"><a href="#分支操作-切换分支" class="headerlink" title="分支操作-切换分支"></a>分支操作-切换分支</h4><p>切换分支命令格式：git checkout[name]</p>
+<h5 id="分支操作-创建分支"><a href="#分支操作-创建分支" class="headerlink" title="分支操作-创建分支"></a>分支操作-创建分支</h5><p>创建分支命令格式：git branch[name]</p>
+<h5 id="分支操作-切换分支"><a href="#分支操作-切换分支" class="headerlink" title="分支操作-切换分支"></a>分支操作-切换分支</h5><p>切换分支命令格式：git checkout[name]</p>
 
   </div>
   <div>
@@ -450,7 +450,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">三、Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">四、本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">五、远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">六、分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -526,7 +526,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">三、Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">四、本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">五、远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">六、分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol></li></ol>
       </div>
     </article>
   
@@ -577,33 +577,15 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/docker/" 
-        title="docker">
-        <div class="tags-list-item">docker</div>
-      </a>
-    
-      <a 
         href="/tags/github/" 
         title="github">
         <div class="tags-list-item">github</div>
       </a>
     
       <a 
-        href="/tags/redis/" 
-        title="redis">
-        <div class="tags-list-item">redis</div>
-      </a>
-    
-      <a 
-        href="/tags/zxing/" 
-        title="zxing">
-        <div class="tags-list-item">zxing</div>
-      </a>
-    
-      <a 
-        href="/tags/linux/" 
-        title="linux">
-        <div class="tags-list-item">linux</div>
+        href="/tags/%E5%85%B6%E4%BB%96/" 
+        title="其他">
+        <div class="tags-list-item">其他</div>
       </a>
     
       <a 
@@ -613,9 +595,27 @@
       </a>
     
       <a 
-        href="/tags/%E5%85%B6%E4%BB%96/" 
-        title="其他">
-        <div class="tags-list-item">其他</div>
+        href="/tags/linux/" 
+        title="linux">
+        <div class="tags-list-item">linux</div>
+      </a>
+    
+      <a 
+        href="/tags/zxing/" 
+        title="zxing">
+        <div class="tags-list-item">zxing</div>
+      </a>
+    
+      <a 
+        href="/tags/redis/" 
+        title="redis">
+        <div class="tags-list-item">redis</div>
+      </a>
+    
+      <a 
+        href="/tags/docker/" 
+        title="docker">
+        <div class="tags-list-item">docker</div>
       </a>
     
   </div>
@@ -636,7 +636,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Git%E7%AE%80%E4%BB%8B"><span class="toc-text">一、Git简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">二、Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">在Git命令行中执行下面命令：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Git%E4%BB%93%E5%BA%93"><span class="toc-text">获取Git仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%81%E7%89%88%E6%9C%AC%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-text">工作区、暂存区、版本库概念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E4%B8%AD%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">三、Git工作区中文件的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">四、本地仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-text">五、远程仓库操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">六、分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-查看分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-创建分支</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C-%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-text">分支操作-切换分支</span></a></li></ol></li></ol></li></ol>
     </article>
   
   
