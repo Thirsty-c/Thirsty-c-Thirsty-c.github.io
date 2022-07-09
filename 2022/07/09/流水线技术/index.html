@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Thirsty&#39;s Blog">
+  <link 
+    rel="icon" 
+    href="/img/Thirsty.png">
+  <title>流水线技术</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="流水线技术">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://example.com/2022/07/09/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/Thirsty.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-07-09">
+      <meta 
+        property="og:article:author" 
+        content="Thirsty">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="软件设计师">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/img/Thirsty.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">Thirsty's Blog</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      流水线技术
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-07-09T03:22:23.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-07-09</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+          class="post-meta-link">
+          软件设计师
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.1k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+            class="post-meta-link">
+            软件设计师
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="流水线技术"><a href="#流水线技术" class="headerlink" title="流水线技术"></a>流水线技术</h3><h4 id="流水线-概念"><a href="#流水线-概念" class="headerlink" title="流水线-概念"></a>流水线-概念</h4><p>相关参数计算：流水线执行时间计算。流水线吞吐率、流水线加速比、流水线效率</p>
+<p>流水线是指在程序执行时多条指令重叠进行操作的一种准并行处理实现技术。各种部件同时处理屎针对不同指令而言的，它们可同时为多条指令的不同部分进行工作，以提高各部件的利用率和指令的平均执行速度</p>
+<p><img src="https://tvax3.sinaimg.cn/large/006TwYuXgy1h3y5kjcohsj30xq0dj485.jpg" alt="kksfs" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://tvax3.sinaimg.cn/large/006TwYuXgy1h3y5kjcohsj30xq0dj485.jpg" class="lozad post-image"></p>
+<h4 id="流水线-流水线计算"><a href="#流水线-流水线计算" class="headerlink" title="流水线-流水线计算"></a>流水线-流水线计算</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220707103742.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220707103742.png"></p>
+<p>一条指令的执行过程可以分解为取指、分析和执行三步，在取指时间$t_{取指}$&#x3D;3$\Delta$t、分析时间$t_{分析}$&#x3D;2${\Delta}$t、执行时间$t_{执行}$&#x3D;4${\Delta}$t的情况下，若按串行方式执行，则10条指令全部执行完需要（）${\Delta}$t；若按流水线的方式执行，流水线周期为（）${\Delta}$t，则10条指令全部执行完需要（）${\Delta}$t。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220707200518.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220707200518.png"></p>
+<h4 id="流水线-流水线吞吐率计算"><a href="#流水线-流水线吞吐率计算" class="headerlink" title="流水线 - 流水线吞吐率计算"></a>流水线 - 流水线吞吐率计算</h4><p>流水线的吞吐率（Though Put rate， TP）是指在单位时间内流水线所完成的任务数量或输出的结果数量。计算流水线吞吐率的最基本的公式如下：</p>
+<p><strong>TP&#x3D;$\frac{指令条数}{流水线执行时间}$</strong></p>
+<p>流水线最大吞吐率：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220708093147.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220708093147.png"></p>
+<h3 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h3><p>考点1:层次化存储体系</p>
+<p>考点2:Cache</p>
+<p>考点3: 主存编址计算</p>
+<h4 id="考点1-层次化存储结构"><a href="#考点1-层次化存储结构" class="headerlink" title="考点1:层次化存储结构"></a>考点1:层次化存储结构</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220708100654.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220708100654.png"></p>
+<p>局部性原理是层次化存储结构的支持</p>
+<p>时间局部性：刚被访问的内容，立即又被访问。</p>
+<p>空间局部性：刚被访问的内容，临近的空间很快的被访问。</p>
+<h4 id="层次化存储结构-分类"><a href="#层次化存储结构-分类" class="headerlink" title="层次化存储结构-分类"></a>层次化存储结构-分类</h4><p>1、存储器位置</p>
+<p>内存&amp;外存</p>
+<p>2、存取方式</p>
+<p>（1）按内容存取：</p>
+<p>相关存储器（如Cache）</p>
+<p>（2）按地址存取</p>
+<p>随机存取存储器（如内存）</p>
+<p>顺序存取存储器（如磁带）</p>
+<p>直接存取存储器（如磁盘）</p>
+<p>3、工作方式</p>
+<p>（1）、随机存取存储器RAM（如内存DRAM）</p>
+<p>（2）、只读存储器ROM（如BIOS）</p>
+<blockquote>
+<p>DRAM：动态随机存取存储器</p>
+<p>SRAM：静态随机存取存储器</p>
+<p>Cache：高速缓存</p>
+<p>EEPROM：电可擦可编程只读存储器</p>
+</blockquote>
+<h4 id="考点2-Cache"><a href="#考点2-Cache" class="headerlink" title="考点2:Cache"></a>考点2:Cache</h4><h4 id="Cache-概念"><a href="#Cache-概念" class="headerlink" title="Cache-概念"></a>Cache-概念</h4><ul>
+<li><p>在计算机的存储系统体系中，Cache是访问速度最快的层次（若有寄存器，则寄存器最快）。</p>
+</li>
+<li><p>使用CaChe改善系统性能的依据是程序的局部性原理</p>
+</li>
+</ul>
+<p>时间局部性</p>
+<p>空间局部性</p>
+<ul>
+<li>如果以h代表对Cache的访问命中率，$t_1$表示Cache的周期时间，$t_2$表示主存储器周期时间，以读操作为例，使用“Cache+主存储器”的系统的平均周期为$t_3$，则：</li>
+</ul>
+<p>$t_3$&#x3D;h$<em>$$t_1$+(1 - h)$</em>$$t_2$</p>
+<p>其中，（1- h）又称为失效率（未命中率）。</p>
+<ul>
+<li>直接相联映像：硬件电路较简单，但冲突率很高。</li>
+<li>全相联映像： 电路难于设计和实现，只适用于小容量的cache，冲突率较低。</li>
+</ul>
+<p>组相联映像：直接相联与全相联的折中</p>
+<p>注：主存与Cache之间的地址映射由硬件直接完成</p>
+<h4 id="Cache-映像"><a href="#Cache-映像" class="headerlink" title="Cache - 映像"></a>Cache - 映像</h4><ul>
+<li>地址映像是将主存与Cache的存储空间划分为若干大小相同的页（或称为块）。</li>
+</ul>
+<blockquote>
+<p>例如，某机的主存容量为1GB,划分为2048页，每页512KB；Cache容量为8MB，划分为16页，每页512KB。</p>
+</blockquote>
+<h4 id="Cache-直接相联映像"><a href="#Cache-直接相联映像" class="headerlink" title="Cache - 直接相联映像"></a>Cache - 直接相联映像</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220709105330.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220709105330.png"></p>
+<h4 id="Cache-全相联映像"><a href="#Cache-全相联映像" class="headerlink" title="Cache - 全相联映像"></a>Cache - 全相联映像</h4><p>特点：冲突率低，电路复杂</p>
+<p><img src="/home/thirsty/.config/Typora/typora-user-images/image-20220709105641905.png" alt="image-20220709105641905" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/home/thirsty/.config/Typora/typora-user-images/image-20220709105641905.png" class="lozad post-image"></p>
+<h4 id="Cache-组相联映像"><a href="#Cache-组相联映像" class="headerlink" title="Cache - 组相联映像"></a>Cache - 组相联映像</h4><p><img src="/home/thirsty/.config/Typora/typora-user-images/image-20220709105847780.png" alt="image-20220709105847780" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/home/thirsty/.config/Typora/typora-user-images/image-20220709105847780.png" class="lozad post-image"></p>
+<h4 id="Cache-映像-1"><a href="#Cache-映像-1" class="headerlink" title="Cache - 映像"></a>Cache - 映像</h4><table>
+<thead>
+<tr>
+<th></th>
+<th align="center">冲突率（高、中、低）</th>
+<th align="center">电路复杂度（复杂、简单、折中）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直接相联映像</td>
+<td align="center">高</td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td>全相联映像</td>
+<td align="center">低</td>
+<td align="center">复杂</td>
+</tr>
+<tr>
+<td>组相联映像</td>
+<td align="center">中</td>
+<td align="center">折中</td>
+</tr>
+</tbody></table>
+<h3 id="考点3-主存编址计算"><a href="#考点3-主存编址计算" class="headerlink" title="考点3: 主存编址计算"></a>考点3: 主存编址计算</h3><h4 id="主存-编址"><a href="#主存-编址" class="headerlink" title="主存 - 编址"></a>主存 - 编址</h4><p><img src="/home/thirsty/.config/Typora/typora-user-images/image-20220709110927783.png" alt="image-20220709110927783" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/home/thirsty/.config/Typora/typora-user-images/image-20220709110927783.png" class="lozad post-image"></p>
+<h4 id="主存-编址与计算"><a href="#主存-编址与计算" class="headerlink" title="主存 - 编址与计算"></a>主存 - 编址与计算</h4><ul>
+<li>存储单元</li>
+</ul>
+<p>存储单元个数&#x3D;最大地址 - 最小地址 + 1</p>
+<ul>
+<li>编址内容</li>
+</ul>
+<p>按字编址：存储体的存储单元是字存储单元，即最小寻址单位是一个字。</p>
+<p>按字节编址：存储体的存储单元是字节存储单元，即最小寻址单位是一个字节。</p>
+<ul>
+<li>总容量 &#x3D; 存储单元个数 * 编址内容</li>
+</ul>
+<p>根据存储器所要求的内容和选定的存储芯片的容量，就可以计算出所需芯片的总数，即：</p>
+<p>总片数 &#x3D; 总容量 &#x2F; 每片的容量</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Thirsty
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://example.com/2022/07/09/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/">
+            http://example.com/2022/07/09/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/07/07/%E6%95%88%E9%AA%8C%E7%A0%81%E7%9A%84%E6%A6%82%E8%BF%B0/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">效验码的概述 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF"><span class="toc-text">流水线技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%A6%82%E5%BF%B5"><span class="toc-text">流水线-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线-流水线计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%90%9E%E5%90%90%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线 - 流水线吞吐率计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">存储系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91-%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">考点1:层次化存储结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84-%E5%88%86%E7%B1%BB"><span class="toc-text">层次化存储结构-分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-Cache"><span class="toc-text">考点2:Cache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%A6%82%E5%BF%B5"><span class="toc-text">Cache-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%9B%B4%E6%8E%A5%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 直接相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 全相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%BB%84%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 组相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F-1"><span class="toc-text">Cache - 映像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B93-%E4%B8%BB%E5%AD%98%E7%BC%96%E5%9D%80%E8%AE%A1%E7%AE%97"><span class="toc-text">考点3: 主存编址计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80"><span class="toc-text">主存 - 编址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="toc-text">主存 - 编址与计算</span></a></li></ol></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/Thirsty.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Thirsty</p>
+<p class="author-description">划船不用桨，一生全靠浪。</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>12</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>4</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>8</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Thirsty-c">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="1976801103@qq.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://weibo.com/u/6317354527">
+          <i class="iconfont icon-sina society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/700351271?spm_id_from=333.1007.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF"><span class="toc-text">流水线技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%A6%82%E5%BF%B5"><span class="toc-text">流水线-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线-流水线计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%90%9E%E5%90%90%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线 - 流水线吞吐率计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">存储系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91-%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">考点1:层次化存储结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84-%E5%88%86%E7%B1%BB"><span class="toc-text">层次化存储结构-分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-Cache"><span class="toc-text">考点2:Cache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%A6%82%E5%BF%B5"><span class="toc-text">Cache-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%9B%B4%E6%8E%A5%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 直接相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 全相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%BB%84%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 组相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F-1"><span class="toc-text">Cache - 映像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B93-%E4%B8%BB%E5%AD%98%E7%BC%96%E5%9D%80%E8%AE%A1%E7%AE%97"><span class="toc-text">考点3: 主存编址计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80"><span class="toc-text">主存 - 编址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="toc-text">主存 - 编址与计算</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/docker/">
+        <div class="categories-list-item">
+          docker
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%85%B6%E4%BB%96/">
+        <div class="categories-list-item">
+          其他
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/linux/">
+        <div class="categories-list-item">
+          linux
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">
+        <div class="categories-list-item">
+          软件设计师
+          <span class="categories-list-item-badge">3</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/docker/" 
+        title="docker">
+        <div class="tags-list-item">docker</div>
+      </a>
+    
+      <a 
+        href="/tags/github/" 
+        title="github">
+        <div class="tags-list-item">github</div>
+      </a>
+    
+      <a 
+        href="/tags/redis/" 
+        title="redis">
+        <div class="tags-list-item">redis</div>
+      </a>
+    
+      <a 
+        href="/tags/zxing/" 
+        title="zxing">
+        <div class="tags-list-item">zxing</div>
+      </a>
+    
+      <a 
+        href="/tags/linux/" 
+        title="linux">
+        <div class="tags-list-item">linux</div>
+      </a>
+    
+      <a 
+        href="/tags/springboot/" 
+        title="springboot">
+        <div class="tags-list-item">springboot</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%85%B6%E4%BB%96/" 
+        title="其他">
+        <div class="tags-list-item">其他</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+        title="软件设计师">
+        <div class="tags-list-item">软件设计师</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF"><span class="toc-text">流水线技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%A6%82%E5%BF%B5"><span class="toc-text">流水线-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线-流水线计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%90%9E%E5%90%90%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="toc-text">流水线 - 流水线吞吐率计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F"><span class="toc-text">存储系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91-%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-text">考点1:层次化存储结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84-%E5%88%86%E7%B1%BB"><span class="toc-text">层次化存储结构-分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-Cache"><span class="toc-text">考点2:Cache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%A6%82%E5%BF%B5"><span class="toc-text">Cache-概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%9B%B4%E6%8E%A5%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 直接相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 全相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E7%BB%84%E7%9B%B8%E8%81%94%E6%98%A0%E5%83%8F"><span class="toc-text">Cache - 组相联映像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cache-%E6%98%A0%E5%83%8F-1"><span class="toc-text">Cache - 映像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B93-%E4%B8%BB%E5%AD%98%E7%BC%96%E5%9D%80%E8%AE%A1%E7%AE%97"><span class="toc-text">考点3: 主存编址计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80"><span class="toc-text">主存 - 编址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98-%E7%BC%96%E5%9D%80%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="toc-text">主存 - 编址与计算</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/"><div class="recent-posts-item-content">流水线技术</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-07</div>
+        <a href="/2022/07/07/%E6%95%88%E9%AA%8C%E7%A0%81%E7%9A%84%E6%A6%82%E8%BF%B0/"><div class="recent-posts-item-content">效验码的概述</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-07</div>
+        <a href="/2022/07/07/%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA/"><div class="recent-posts-item-content">数据的表示</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-04-15</div>
+        <a href="/2022/04/15/Git/"><div class="recent-posts-item-content">Git</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Thirsty's Blog
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
