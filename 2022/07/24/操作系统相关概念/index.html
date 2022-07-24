@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Thirsty&#39;s Blog">
+  <link 
+    rel="icon" 
+    href="/img/Thirsty.png">
+  <title>操作系统相关概念</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="操作系统相关概念">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://example.com/2022/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/Thirsty.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-07-24">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-07-24">
+      <meta 
+        property="og:article:author" 
+        content="Thirsty">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="软件设计师">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/img/Thirsty.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">Thirsty's Blog</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      操作系统相关概念
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-07-24T05:15:50.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-07-24</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+          class="post-meta-link">
+          软件设计师
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.2k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+            class="post-meta-link">
+            软件设计师
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="操作系统相关概念"><a href="#操作系统相关概念" class="headerlink" title="操作系统相关概念"></a>操作系统相关概念</h3><blockquote>
+<p>考点1：操作系统的作用</p>
+<p>考点2：特殊的操作系统</p>
+</blockquote>
+<h3 id="考点1：操作系统的作用"><a href="#考点1：操作系统的作用" class="headerlink" title="考点1：操作系统的作用"></a>考点1：操作系统的作用</h3><h4 id="操作系统-概述"><a href="#操作系统-概述" class="headerlink" title="操作系统 - 概述"></a>操作系统 - 概述</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715092453.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715092453.png"></p>
+<p> 操作系统的功能</p>
+<blockquote>
+<p>管理系统的硬件、软件、数据资源</p>
+<p>控制程序运行</p>
+<p>人机之间的接口</p>
+<p>应用软件与硬件之间的接口</p>
+</blockquote>
+<p>操作系统的工作范围</p>
+<blockquote>
+<p>进程管理</p>
+<p>存储管理</p>
+<p>文件管理</p>
+<p>作业管理</p>
+<p>设备管理</p>
+</blockquote>
+<h3 id="考点2：特殊的操作系统"><a href="#考点2：特殊的操作系统" class="headerlink" title="考点2：特殊的操作系统"></a>考点2：特殊的操作系统</h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715093118.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715093118.png"></p>
+<h3 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h3><blockquote>
+<p>考点1：线程的概念</p>
+<p>考点2：进程的状态</p>
+</blockquote>
+<h3 id="考点1：线程的概念"><a href="#考点1：线程的概念" class="headerlink" title="考点1：线程的概念"></a>考点1：线程的概念</h3><h4 id="进程管理-进程的概念"><a href="#进程管理-进程的概念" class="headerlink" title="进程管理 - 进程的概念"></a>进程管理 - 进程的概念</h4><ul>
+<li>进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。它由程序块、进程控制块（PCB）和数据快三部分组成。</li>
+</ul>
+<blockquote>
+<p>PCB：PCB是进程存在的唯一标志。内容包含进程标识符、状态、位置信息、控制信息、队列指针（链接同一状态的进程）、优先级、现场保护区等。</p>
+</blockquote>
+<ul>
+<li>进程与程序的区别：进程是程序的一次执行过程，没有程序就没有进程。</li>
+<li>程序是一个静态的概念，而进程是一个动态的概念，它由创建而产生，完成任务后因撤销而消亡；进程是系统进行资源分配和调度的独立单位，而程序不是。</li>
+</ul>
+<h4 id="进程管理-进程与线程"><a href="#进程管理-进程与线程" class="headerlink" title="进程管理 - 进程与线程"></a>进程管理 - 进程与线程</h4><ul>
+<li>进程的2个基本属性：可拥有资源的独立单位；可独立调度和分配资源的基本单位。</li>
+</ul>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715110513.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715110513.png"></p>
+<h3 id="考点2：进程的状态"><a href="#考点2：进程的状态" class="headerlink" title="考点2：进程的状态"></a>考点2：进程的状态</h3><h4 id="进程管理-进程的状态"><a href="#进程管理-进程的状态" class="headerlink" title="进程管理 - 进程的状态"></a>进程管理 - 进程的状态</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715111643.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220715111643.png"></p>
+<blockquote>
+<ul>
+<li>运行：当一个进程在CPU上运行时。（单处理机处于运行态的进程只有一个）</li>
+<li>就绪：一个进程获得了除CPU外的一切所有资源，一旦得到处理机即可运行。</li>
+<li>阻塞：阻塞也称等待或睡眠状态，一个进程正在等待某一个事件发生（例如请求I&#x2F;O等待I&#x2F;O完成等）而暂时停止运行，此时即使把CPU分配给进程也无法运行，故称进程处于阻塞状态。</li>
+</ul>
+</blockquote>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718095605.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718095605.png"></p>
+<p>挂起原因：</p>
+<blockquote>
+<p>（1）进程过多，主存资源不足，此时必须将某些进程挂起，放到磁盘对换区，暂时不参与调度，以平衡系统负载；</p>
+<p>（2）系统出现故障，或者是用户调试程序，也可能需要将进程挂起检查问题。</p>
+</blockquote>
+<h3 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h3><blockquote>
+<p>考点1：PV操作的概念</p>
+<p>考点2：信号量与PV操作</p>
+<p>考点3：前趋图与PV操作</p>
+</blockquote>
+<h4 id="考点1：PV操作的概念"><a href="#考点1：PV操作的概念" class="headerlink" title="考点1：PV操作的概念"></a>考点1：PV操作的概念</h4><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718101513.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718101513.png"></p>
+<p>间接制约关系</p>
+<blockquote>
+<p>临界资源:诸进程间需要互斥方式对其进行共享的资源.(进程中访问临界资源的那段代码称为临界区)</p>
+</blockquote>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718101917.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718101917.png"></p>
+<p>同步:速度有差异,在一定情况停下等待.</p>
+<p>直接制约关系</p>
+<h4 id="进程管理-PV操作"><a href="#进程管理-PV操作" class="headerlink" title="进程管理- PV操作"></a>进程管理- PV操作</h4><p>信号量:是一种特殊的变量.</p>
+<ul>
+<li>信号量可以表示资源数量.</li>
+<li>信号量为负数时还可以表示排队进程数</li>
+</ul>
+<p>P时荷兰语的Passeren,V时荷兰语的Verhoog</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718102322.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220718102322.png"></p>
+<p>P操作</p>
+<blockquote>
+<p>s &#x3D; s - 1 : 申请&#x2F;锁定资源</p>
+<p>s &lt; 0 : 检查资源是否足够</p>
+</blockquote>
+<p>V操作</p>
+<blockquote>
+<p>s &#x3D; s +1 : 释放&#x2F;解锁资源</p>
+<p>s &lt;&#x3D; 0 : 检查是否有进程排队</p>
+</blockquote>
+<h4 id="考点2-信号量与PV操作"><a href="#考点2-信号量与PV操作" class="headerlink" title="考点2:信号量与PV操作"></a>考点2:信号量与PV操作</h4><h4 id="进程管理-PV操作与互斥模型"><a href="#进程管理-PV操作与互斥模型" class="headerlink" title="进程管理 - PV操作与互斥模型"></a>进程管理 - PV操作与互斥模型</h4><p>多个进程共享一台打印机问题（互斥模型）：</p>
+<blockquote>
+<p>P(S);</p>
+<p>使用打印机;</p>
+<p>V(S);</p>
+<p>后续代码;</p>
+</blockquote>
+<p>互斥信号量S的初值为1.</p>
+<hr>
+<p>单缓冲区生产者、消费者问题（同步模型）：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220719094611.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220719094611.png"></p>
+<blockquote>
+<p>生产者:</p>
+<p>生产一个产品;</p>
+<p>P(S1);</p>
+<p>送产品到缓冲区;</p>
+<p>V(S2);</p>
+</blockquote>
+<blockquote>
+<p>消费者:</p>
+<p>P(S2);</p>
+<p>从缓冲区取产品;</p>
+<p>V(S1);</p>
+<p>消费产品;</p>
+</blockquote>
+<p>S1初值为1;S2初值为0。</p>
+<h4 id="考点3：前趋图与PV操作"><a href="#考点3：前趋图与PV操作" class="headerlink" title="考点3：前趋图与PV操作"></a>考点3：前趋图与PV操作</h4><h4 id="进程管理-PV操作应用"><a href="#进程管理-PV操作应用" class="headerlink" title="进程管理 - PV操作应用"></a>进程管理 - PV操作应用</h4><h3 id="死锁资源数计算"><a href="#死锁资源数计算" class="headerlink" title="死锁资源数计算"></a>死锁资源数计算</h3><h4 id="进程管理-死锁问题"><a href="#进程管理-死锁问题" class="headerlink" title="进程管理 - 死锁问题"></a>进程管理 - 死锁问题</h4><p>所谓死锁，是指两个以上的进程互相都要求对方已经占有的资源导致无法继承运行下去的现象。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721121844.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721121844.png"></p>
+<p>进程管理是操作系统的核心,但如果设计不当,就会出现死锁的问题。如果进程在等待一件不可能发生的事，则进程就死锁了。而如果多个进程产生死锁，就会造成系统死锁。</p>
+<blockquote>
+<p>系统不可能发生死锁的最小资源数 （w - 1）* m + 1 &lt;&#x3D; n</p>
+</blockquote>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721124232.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721124232.png"></p>
+<h3 id="进程资源图"><a href="#进程资源图" class="headerlink" title="进程资源图"></a>进程资源图</h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721125250.png" class="lozad post-image"src="https://raw.githubusercontent.com/Thirsty-c/Gallery/main/blog/20220721125250.png"></p>
+<p>先分析资源分配情况，列出剩余可用资源：此时已分配1个R1给进程P，剩余1个R1可用。</p>
+<p>再判断申请后进程是否能够执行：P进程申请1个R1，系统有1个R1可用，P进程可成功执行，执行后释放占用的2个R1</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Thirsty
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://example.com/2022/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+            http://example.com/2022/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/07/12/%E8%BE%93%E5%85%A5%EF%BC%BC%E8%BE%93%E5%87%BA%E6%8A%80%E6%9C%AF/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">输入＼输出技术 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">操作系统相关概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">考点1：操作系统的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0"><span class="toc-text">操作系统 - 概述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E7%89%B9%E6%AE%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">考点2：特殊的操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程管理 - 进程的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="toc-text">进程管理 - 进程与线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">考点2：进程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">进程管理 - 进程的状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9APV%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：PV操作的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C"><span class="toc-text">进程管理- PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-%E4%BF%A1%E5%8F%B7%E9%87%8F%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点2:信号量与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E4%B8%8E%E4%BA%92%E6%96%A5%E6%A8%A1%E5%9E%8B"><span class="toc-text">进程管理 - PV操作与互斥模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B93%EF%BC%9A%E5%89%8D%E8%B6%8B%E5%9B%BE%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点3：前趋图与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E5%BA%94%E7%94%A8"><span class="toc-text">进程管理 - PV操作应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E8%B5%84%E6%BA%90%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="toc-text">死锁资源数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="toc-text">进程管理 - 死锁问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE"><span class="toc-text">进程资源图</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/Thirsty.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Thirsty</p>
+<p class="author-description">划船不用桨，一生全靠浪。</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>14</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>4</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>8</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Thirsty-c">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="1976801103@qq.com">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://weibo.com/u/6317354527">
+          <i class="iconfont icon-sina society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/700351271?spm_id_from=333.1007.0.0">
+          <i class="iconfont icon-bilibili society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">操作系统相关概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">考点1：操作系统的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0"><span class="toc-text">操作系统 - 概述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E7%89%B9%E6%AE%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">考点2：特殊的操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程管理 - 进程的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="toc-text">进程管理 - 进程与线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">考点2：进程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">进程管理 - 进程的状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9APV%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：PV操作的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C"><span class="toc-text">进程管理- PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-%E4%BF%A1%E5%8F%B7%E9%87%8F%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点2:信号量与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E4%B8%8E%E4%BA%92%E6%96%A5%E6%A8%A1%E5%9E%8B"><span class="toc-text">进程管理 - PV操作与互斥模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B93%EF%BC%9A%E5%89%8D%E8%B6%8B%E5%9B%BE%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点3：前趋图与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E5%BA%94%E7%94%A8"><span class="toc-text">进程管理 - PV操作应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E8%B5%84%E6%BA%90%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="toc-text">死锁资源数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="toc-text">进程管理 - 死锁问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE"><span class="toc-text">进程资源图</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/docker/">
+        <div class="categories-list-item">
+          docker
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%85%B6%E4%BB%96/">
+        <div class="categories-list-item">
+          其他
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+      <a href="/categories/linux/">
+        <div class="categories-list-item">
+          linux
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/">
+        <div class="categories-list-item">
+          软件设计师
+          <span class="categories-list-item-badge">5</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/docker/" 
+        title="docker">
+        <div class="tags-list-item">docker</div>
+      </a>
+    
+      <a 
+        href="/tags/github/" 
+        title="github">
+        <div class="tags-list-item">github</div>
+      </a>
+    
+      <a 
+        href="/tags/redis/" 
+        title="redis">
+        <div class="tags-list-item">redis</div>
+      </a>
+    
+      <a 
+        href="/tags/zxing/" 
+        title="zxing">
+        <div class="tags-list-item">zxing</div>
+      </a>
+    
+      <a 
+        href="/tags/linux/" 
+        title="linux">
+        <div class="tags-list-item">linux</div>
+      </a>
+    
+      <a 
+        href="/tags/springboot/" 
+        title="springboot">
+        <div class="tags-list-item">springboot</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%85%B6%E4%BB%96/" 
+        title="其他">
+        <div class="tags-list-item">其他</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88/" 
+        title="软件设计师">
+        <div class="tags-list-item">软件设计师</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">操作系统相关概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">考点1：操作系统的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E6%A6%82%E8%BF%B0"><span class="toc-text">操作系统 - 概述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E7%89%B9%E6%AE%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">考点2：特殊的操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：线程的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">进程管理 - 进程的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="toc-text">进程管理 - 进程与线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%83%E7%82%B92%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">考点2：进程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">进程管理 - 进程的状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B91%EF%BC%9APV%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">考点1：PV操作的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C"><span class="toc-text">进程管理- PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B92-%E4%BF%A1%E5%8F%B7%E9%87%8F%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点2:信号量与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E4%B8%8E%E4%BA%92%E6%96%A5%E6%A8%A1%E5%9E%8B"><span class="toc-text">进程管理 - PV操作与互斥模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%83%E7%82%B93%EF%BC%9A%E5%89%8D%E8%B6%8B%E5%9B%BE%E4%B8%8EPV%E6%93%8D%E4%BD%9C"><span class="toc-text">考点3：前趋图与PV操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-PV%E6%93%8D%E4%BD%9C%E5%BA%94%E7%94%A8"><span class="toc-text">进程管理 - PV操作应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E8%B5%84%E6%BA%90%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="toc-text">死锁资源数计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="toc-text">进程管理 - 死锁问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B5%84%E6%BA%90%E5%9B%BE"><span class="toc-text">进程资源图</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-24</div>
+        <a href="/2022/07/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/"><div class="recent-posts-item-content">操作系统相关概念</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-12</div>
+        <a href="/2022/07/12/%E8%BE%93%E5%85%A5%EF%BC%BC%E8%BE%93%E5%87%BA%E6%8A%80%E6%9C%AF/"><div class="recent-posts-item-content">输入＼输出技术</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-09</div>
+        <a href="/2022/07/09/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/"><div class="recent-posts-item-content">流水线技术</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-07</div>
+        <a href="/2022/07/07/%E6%95%88%E9%AA%8C%E7%A0%81%E7%9A%84%E6%A6%82%E8%BF%B0/"><div class="recent-posts-item-content">效验码的概述</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Thirsty's Blog
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
